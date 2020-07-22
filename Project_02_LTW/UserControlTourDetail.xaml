@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cv="clr-namespace:Project_02_LTW.Converters"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:Project_02_LTW"
              mc:Ignorable="d" 
              d:DesignHeight="330" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <cv:RelativeToAsolutePathConverter x:Key="pathConverter" />
+    </UserControl.Resources>
     <ScrollViewer Height="330" Width="800">
         <Canvas  Background="White" Name="Grid_1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="330" Width="800" >
             <Image x:Name="ImageTour" Source="{Binding Imagee}" RenderTransformOrigin="0.5,0.5" Width="191" Height="115" Canvas.Left="10" Canvas.Top="10">
@@ -16,12 +21,14 @@
             <ListView x:Name="imagee_of_team" Width="295" RenderTransformOrigin="0.5,0.5" Height="261" Canvas.Left="486" Canvas.Top="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <Image Source="{Binding Part_Image}" Width="50" Height="30"/>
-                            <TextBlock Text="{Binding Part}"/>
-                            <TextBlock Text="{Binding Part_Detail}" FontSize="14"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Part_Image,  Converter={StaticResource pathConverter}}" Width="100" Height="100"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Part}"/>
+                                <TextBlock Text="{Binding Part_Detail}" FontSize="14" Width="150" TextWrapping="Wrap"/>
+                            </StackPanel>
                         </StackPanel>
-
+                        
                     </DataTemplate>
                 </ListView.ItemTemplate>
 
@@ -31,9 +38,9 @@
             <ListView x:Name="data_member" Width="263" Height="261" Canvas.Left="218" Canvas.Top="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Member_Name }" Height="30" Width="100"/>
+                        <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding Member_Avatar}" Height="30" Width="30"></Image>
+                            <TextBlock Text="{Binding Member_Name }" Height="30" Width="200"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

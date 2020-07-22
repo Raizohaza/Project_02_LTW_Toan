@@ -22,41 +22,28 @@ namespace Project_02_LTW
     /// </summary>
     public partial class UserControlPieChart : UserControl
     {
-        public UserControlPieChart()
+        TCH _data;
+        public UserControlPieChart(TCH tCH)
         {
             InitializeComponent();
-        }
-        public SeriesCollection Data => new SeriesCollection()
-        {
-          
-            //new ColumnSeries()
-            //{
-            //    Title = "Khoan chi dau nam",
-            //    Values = new ChartValues<float> {100, 200, 300, 400},
-            //    Stroke = Brushes.Red,
-            //    StrokeThickness = 5,
-            //    Fill = Brushes.Green,
-            //    StrokeDashArray = new DoubleCollection {4, 10, 1}
-            //}
+            _data = tCH;
+            PieChartView.Series = new SeriesCollection();
 
-            new PieSeries()
+            for (int i = 0; i < _data.bill.Count; i++)
             {
-                Values = new ChartValues<float> {50 } , Title = "Minh"
-            },
-            new PieSeries()
-            {
-                Values = new ChartValues<float> {50 } , Title = "Long"
-            },
-            new PieSeries()
-            {
-                Values = new ChartValues<float> {30 } , Title = "Hang",
-            },
-            new PieSeries()
-            {
-                Values = new ChartValues<float> {15 } , Title = "Tuan",
+                var tmp = new PieSeries() { Values = new ChartValues<int>() { _data.bill[i].Cost }, Title = _data.bill[i].CostName };
+                PieChartView.Series.Add(
+                    new PieSeries()
+                    {
+                        Values = new ChartValues<float> { _data.bill[i].Cost },
+                        Title = _data.bill[i].CostName
+                    }
+                );
             }
-        };
-        private void UserControl_Initialized(object sender, EventArgs e)
+            PieChartView.DataContext = this;
+        }
+
+        private void UserControl_Initialized_2(object sender, EventArgs e)
         {
             this.DataContext = this;
         }
@@ -72,5 +59,6 @@ namespace Project_02_LTW
             var neo = chartPoint.SeriesView as PieSeries;
             neo.PushOut = 30;
         }
+
     }
 }

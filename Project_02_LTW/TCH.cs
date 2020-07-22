@@ -15,21 +15,18 @@ namespace Project_02_LTW
         public string Intro { get; set; } = "";
         public string Pass { get; set; } = "";
         public BindingList<string> list_member { get; set; } = new BindingList<string>();
+        public BindingList<list_member> Members { get; set; } = new BindingList<list_member>();
         public BindingList<bill> bill { get; set; } = new BindingList<bill>();
         public BindingList<Milestone> Milestones { get; set; } = new BindingList<Milestone>();
         public BindingList<Advance_Money> Advance_Moneys { get; set; } = new BindingList<Advance_Money>();//ung truoc
 
-
-        // lo trinh
-        public string Part { get; set; }
-        public string Part_Detail { get; set; }
-        public BindingList<string> Part_Image { get; set; }
-
     }
+    // lo trinh
     public class Milestone
     {
-        public BindingList<string> Places { get; set; } = new BindingList<string>();
-        public BindingList<string> Images { get; set; } = new BindingList<string>();
+        public string Part { get; set; }
+        public string Part_Detail { get; set; }
+        public string Part_Image { get; set; } = "";
     }
     public class Advance_Money
     {

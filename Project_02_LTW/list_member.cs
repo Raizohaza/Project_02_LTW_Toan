@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_02_LTW
 {
-    class list_member
+    public class list_member
     {
         public string Member_Name { get; set; }
         public string Member_Avatar { get; set; }

@@ -28,13 +28,17 @@ namespace Project_02_LTW
         {
             InitializeComponent();
         }
-
+        public BindingList<Milestone> Milestones { get; set; } = new BindingList<Milestone>();
+        BindingList<list_member> list_member = new BindingList<list_member>();
+        public BindingList<bill> bill { get; set; } = new BindingList<bill>();
 
 
         public static ObservableCollection<TCH> _data = new ObservableCollection<TCH>();
         public void traveling()
         {
+            
             var folder = AppDomain.CurrentDomain.BaseDirectory;
+
             var database = $"{folder}data_travel.txt";
             var lines = File.ReadAllLines(database);
             int count = int.Parse(lines[0]);
@@ -56,37 +60,52 @@ namespace Project_02_LTW
                 };
                 _data.Add(temp);
             }
-            _data[0].list_member.Add("abc");
-            _data[0].list_member.Add("xyz");
-            _data[0].list_member.Add("ccc");
+            _data[4].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
+            _data[4].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
+            _data[4].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
 
-            _data[0].bill.Add(new bill { CostName = "Di chuyen" , Cost = 100000});
-            _data[0].bill.Add(new bill { CostName = "Di" , Cost = 100000});
-            _data[0].bill.Add(new bill { CostName = "chuyen" , Cost = 100000});
+            // lấy data detail
+            for (int index = 0; index < count; index++)
+            {
+                folder = AppDomain.CurrentDomain.BaseDirectory;
+                folder = folder + $"TourDetail\\{_data[index].Name}\\";
 
-            _data[0].Milestones.Add(new Milestone
-            {
-                Images = new BindingList<string>() { "vinh_ha_long.jpg", "vinh_ha_long.jpg" }
-            ,
-                Places = new BindingList<string>() { "Vinh", "Du thuyen" }
-            });
-            _data[0].Milestones.Add(new Milestone
-            {
-                Images = new BindingList<string>() { "vinh_ha_long.jpg", "vinh_ha_long.jpg" }
-            ,
-                Places = new BindingList<string>() { "Vinh", "Du thuyen" }
-            });
-            _data[0].Milestones.Add(new Milestone
-            {
-                Images = new BindingList<string>() { "vinh_ha_long.jpg", "vinh_ha_long.jpg" }
-            ,
-                Places = new BindingList<string>() { "Vinh", "Du thuyen" }
-            });
+                //lo trinh
+                var MemberFile = File.ReadAllLines(folder + "member.TXT");
+                var CostFile = File.ReadAllLines(folder + "cost.txt");
+                var MilestoneFile = File.ReadAllLines(folder + "milestone.txt");
 
-            _data[0].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
-            _data[0].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
-            _data[0].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
+                var num = Int32.Parse(MemberFile[0]);
+
+                for (int i = 0; i < num; i++)
+                {
+                    list_member.Add(new list_member() { Member_Name = MemberFile[1 + 2 * i], Member_Avatar = $"{ folder }{ MemberFile[2 + 2 * i] }" });
+                }
+
+                num = Int32.Parse(CostFile[0]);
+
+                for (int i = 0; i < num; i++)
+                {
+                    bill.Add(new bill() { CostName = CostFile[1 + 2 * i], Cost = Int32.Parse(CostFile[2 + 2 * i]) });
+                }
+
+                num = Int32.Parse(MilestoneFile[0]);
+
+                for (int i = 0; i < num; i++)
+                {
+                    Milestones.Add(new Milestone()
+                    {
+                        Part = MilestoneFile[1 + 3 * i],
+                        Part_Detail = MilestoneFile[2 + 3 * i],
+                        Part_Image = $"{folder}{MilestoneFile[3 + 3 * i]}",
+                    });
+                }
+                _data[index].Members = list_member;
+                _data[index].bill = bill;
+                _data[index].Milestones = Milestones;
+            }
         }
+    
 
 
 

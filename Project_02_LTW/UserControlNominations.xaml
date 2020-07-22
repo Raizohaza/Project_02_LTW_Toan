@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <TextBlock Text="Comming Soon !!!" FontSize="50" Margin="206,88,179,217.6"/>
+        <TextBlock Text="Comming Soon !!!" FontSize="50" Margin="30"/>
     </Grid>
 </UserControl>

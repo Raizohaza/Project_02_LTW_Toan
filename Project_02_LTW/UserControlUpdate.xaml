@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControlUpdate_Loaded">
     <ScrollViewer Height="400" Width="800">
-        <Canvas  Background="White" Name="Grid_1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="1200" Width="800" >
+        <Canvas  Background="White" Name="Grid_1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="1100" Width="800" >
+            <Button x:Name="Button_Get_Avatar" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="Button_Get_Avatar_Click"  Content="..." RenderTransformOrigin="4.125,2.571" Canvas.Left="255" Margin="0" Canvas.Top="245" />
+
             <Image x:Name="ImageForTour" Source="{Binding Imagee}" RenderTransformOrigin="0.5,0.5" Width="319" Height="215" Canvas.Left="31" Canvas.Top="20">
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -21,60 +23,98 @@
             </Image>
             <TextBox x:Name="NameTour"  Width="180" Canvas.Left="10" Canvas.Top="250" Height="30" HorizontalAlignment="Center" RenderTransformOrigin="0.25,-0.967"/>
             <TextBox TextWrapping="WrapWithOverflow" x:Name="IntroTour" FontSize="14" HorizontalAlignment="Center" Height="55" Width="325" Canvas.Top="315" Canvas.Left="10"/>
-            <ListView x:Name="imagee_of_team" Width="380" RenderTransformOrigin="0.5,0.5" Canvas.Top="402" Height="58" Canvas.Left="10">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Image Source="{Binding}" Width="30" Height="30"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
-            <ListView x:Name="data_member" Width="320" Height="210" Canvas.Left="470" Canvas.Top="10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                        <TextBlock Text="{Binding }" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
-            <ListView x:Name="MilestonesListView" Width="320" Height="210" Canvas.Left="470" Canvas.Top="250">
+            <!--Members-->
+            <TextBlock Text="Data_Member:" Canvas.Left="365" Canvas.Top="35" Height="35" Width="100" />
+            <ListView x:Name="data_member" Width="320" Height="210" Canvas.Left="465" Canvas.Top="35" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding }" />
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Member_Avatar}" Height="30" Width="30"></Image>
+                            <TextBox x:Name="MemberTextBox" Text="{Binding Member_Name }" Height="30" Width="150" TextChanged="MemberTextBox_TextChanged"/>
+                            <Button x:Name="Button_Get_Member_Avatar" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="Button_Get_Member_Avatar_Click" Content="..." />
+                            <Button x:Name="Delete" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="Delete_Click" Content="X"  Foreground="Red"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button x:Name="AddMember" Content="Add" Click="AddMember_Click" Width="50" Height="25" Canvas.Left="365" Canvas.Top="220" />
 
-            <ListView x:Name="CostListView" Width="320" Height="210" Canvas.Left="470" Canvas.Top="505">
+            <TextBlock Text="Milestones:" Canvas.Left="365" Canvas.Top="270" Height="35" Width="100" />
+            <ListView x:Name="MilestonesListView" Width="320" Height="210" Canvas.Left="465" Canvas.Top="270" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                        <TextBlock Text="{Binding CostName}"/>
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="{Binding Part_Image}" Width="100" Height="100"/>
+                            <StackPanel>
+                                <TextBox x:Name="PartTextBox" Text="{Binding Part}" TextChanged="PartTextBox_TextChanged"/>
+                                <TextBox x:Name="Part_Detail" Text="{Binding Part_Detail}" TextChanged="Part_Detail_TextChanged" FontSize="14" Width="150" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Button x:Name="Button_Get_Milestone_Avatar" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="Button_Get_Milestone_Avatar_Click" Content="..." />
+                                <Button x:Name="DeleteMilestone" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="DeleteMilestone_Click" Content="X"  Foreground="Red"/>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView x:Name="AdvanceList" Width="320" Height="210" Canvas.Left="70" Canvas.Top="505">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding }" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <Button x:Name="AddMilestone" Content="Add" Click="AddMilestone_Click" Width="50" Height="25" Canvas.Left="365" Canvas.Top="455" />
+
+
+            <TextBlock Text="Cost:" Canvas.Left="365" Canvas.Top="512" Height="35" Width="100" />
+            <ListView x:Name="CostListView" Width="320" Height="210" Canvas.Left="470" Canvas.Top="512" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name"  Width="120" x:Name="_TourName">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox TextWrapping="Wrap" TextChanged="CostNameTextBox_TextChanged" Name="CostNameTextBox" Text="{Binding CostName}" Width="100"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Price" Width="120" x:Name="Price">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Cost}" Width="100" Name="CostTextBox" TextChanged="CostTextBox_TextChanged"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Delete" Width="70" x:Name="Delete">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="DeleteCost" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="DeleteCost_Click" Content="X"  Foreground="Red"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
             </ListView>
-            <Button x:Name="DoneButton" Content="Done" Style="{StaticResource btnBlue}" Click="DoneButton_Click" Margin="0" Canvas.Left="560" Canvas.Top="720" Height="150" Width="175"/>
+            <Button x:Name="AddCost" Content="Add" Click="AddCost_Click" Width="50" Height="25" Canvas.Left="365" Canvas.Top="697" />
+
+
+            <TextBlock Text="Ứng trước:" Canvas.Left="15" Canvas.Top="512" Height="35" Width="100" />
+            <ListView x:Name="AdvanceList" Width="320" Height="210" Canvas.Left="15" Canvas.Top="565">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name"  Width="120" x:Name="AdvanceName">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox TextWrapping="Wrap" Name="CostNameTextBox" Text="{Binding Info}" Width="100"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Price" Width="120" x:Name="AdvanceMoney">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Money}" Width="100" Name="CostTextBox" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button x:Name="DoneButton" Content="Done" Style="{StaticResource btnBlue}" Click="DoneButton_Click" Margin="0" Canvas.Left="560" Canvas.Top="805" Height="150" Width="175"/>
         </Canvas>
     </ScrollViewer>
 </UserControl>

@@ -4,12 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:cv="clr-namespace:Project_02_LTW.Converters"
              xmlns:local="clr-namespace:Project_02_LTW"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <lvc:PieChart Series="{Binding Data}" LegendLocation="Bottom" DataClick="PieChart_DataClick">
+             d:DesignHeight="450" d:DesignWidth="800" Initialized="UserControl_Initialized_2">
+    <UserControl.Resources>
+        <cv:RelativeToAsolutePathConverter x:Key="pathConverter" />
+    </UserControl.Resources>
+    <Canvas Height="315" Width="800" Background="Wheat">
+        <ScrollViewer Height="315" Width="800">
+            <lvc:PieChart Name="PieChartView"  LegendLocation="Right" DataClick="PieChart_DataClick" Height="auto" Width="auto" Canvas.Left="250" Canvas.Top="30">
 
-        </lvc:PieChart>
-    </Grid>
+            </lvc:PieChart>
+        </ScrollViewer>
+        <TextBlock Text="Biểu đồ thu  chi" TextWrapping="Wrap" FontSize="24" Canvas.Left="10" Canvas.Top="10" Height="137" Width="51"/>
+    </Canvas>
 </UserControl>

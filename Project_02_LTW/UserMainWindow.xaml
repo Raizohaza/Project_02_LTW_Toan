@@ -16,10 +16,23 @@
             <Label Content="TCH's Tour" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="18" FontWeight="Medium" Foreground="Black" Margin="58,0,0,3" Grid.Row="0" Width="97"/>
         </Grid>
         <Grid x:Name="Grid1" Background="White" Height="50" Width="800" DockPanel.Dock="Top">
-            <Button x:Name="Button_Home" Content="Home" Click="Button_Home_Click" Height="49" Width="200" Style="{StaticResource btnLightRed}" Margin="0,0,600,1" />
-            <Button x:Name="Button_AboutUs" Content="About Us" Click="Button_AboutUs_Click" Height="49" Width="200" Style="{StaticResource btnLightRed}" Margin="600,0,0,1"  />
-            <Button x:Name="Button_NewTour" Content="New Tour" Click="Button_NewTour_Click" Height="49" Width="200" Style="{StaticResource btnGray}" Margin="200,0,400,1"/>
-            <Button x:Name="Button_Nominations" Content="Nominations" Click="Button_Nominations_Click" Height="49" Width="200" Style="{StaticResource btnGray}" HorizontalAlignment="Left" Margin="400,0,0,1" />
+            <Button x:Name="Button_Home" Content="Home" Click="Button_Home_Click" Height="49" Style="{StaticResource btnLightRed}" Margin="0,0,642,1"  />
+            <Button Width="153" Height="49" HorizontalAlignment="Left" Margin="163,0,0,0" VerticalAlignment="Top" Style="{StaticResource btnLightRed}">
+                <Menu x:Name="FilterBlade" >
+                    <MenuItem Header="FilterBlade" Height="50" Width="148" FontSize="18" VerticalContentAlignment="Center" Background="White" HorizontalAlignment="Center">
+                        <MenuItem Header="Tìm kiếm" VerticalContentAlignment="Center" HorizontalAlignment="Right" FontSize="18" FontWeight="Medium" Foreground="Black" Grid.Row="0" Width="248" RenderTransformOrigin="1.092,0.482" Height="40" Margin="0,0,-3,0">
+                            <TextBox x:Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" Margin="0,0,0,0" Height="40" Width="160"/>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="Tìm kiếm theo ten"  VerticalContentAlignment="Center" HorizontalAlignment="Right" FontSize="18" FontWeight="Medium" Foreground="Black" Width="244" RenderTransformOrigin="1.092,0.482" Height="37" Margin="0,0,1,0">
+                            <TextBox x:Name="TextNameToSearch" TextChanged="TextNameToSearch_TextChanged" Margin="0,0,0,0" Height="40" Width="156"/>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Button>
+            <Button x:Name="Button_AboutUs" Content="About Us" Click="Button_AboutUs_Click" Height="49" Style="{StaticResource btnLightRed}" Margin="629,0,10,1"  />
+            <Button x:Name="Button_NewTour" Content="New Tour" Click="Button_NewTour_Click" Height="49" Style="{StaticResource btnGray}" Margin="321,0,335,1" RenderTransformOrigin="1.396,0.444"/>
+            <Button x:Name="Button_Nominations" Content="Nominations" Click="Button_Nominations_Click" Height="49" Width="154" Style="{StaticResource btnGray}" HorizontalAlignment="Left" Margin="470,0,0,1" RenderTransformOrigin="1.011,0.577" />
         </Grid>
         <Grid Background="Snow" Name="Grid2" Width="800">
             <TabControl x:Name="TabItem"  Grid.Row="1" >
@@ -44,7 +57,7 @@
                 </TabItem>
 
                 <TabItem Header="non_Arrived" Margin="199.4,0,-397.4,-2">
-                    <ListView x:Name="_non_Arrived">
+                    <ListView x:Name="_non_Arrived" MouseLeftButtonUp="_non_Arrived_MouseLeftButtonUp">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel/>
@@ -67,10 +80,10 @@
 
 
         </Grid>
-        
 
 
-       
+
+
 
     </DockPanel>
 
