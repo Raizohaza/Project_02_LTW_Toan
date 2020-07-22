@@ -28,9 +28,7 @@ namespace Project_02_LTW
         {
             InitializeComponent();
         }
-        public BindingList<Milestone> Milestones { get; set; } = new BindingList<Milestone>();
-        BindingList<list_member> list_member = new BindingList<list_member>();
-        public BindingList<bill> bill { get; set; } = new BindingList<bill>();
+        
 
 
         public static ObservableCollection<TCH> _data = new ObservableCollection<TCH>();
@@ -60,13 +58,16 @@ namespace Project_02_LTW
                 };
                 _data.Add(temp);
             }
-            _data[4].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
-            _data[4].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
-            _data[4].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
+            _data[1].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
+            _data[1].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
+            _data[1].Advance_Moneys.Add(new Advance_Money() { Info = "A tra cho B", Money = 100000});
 
             // lấy data detail
             for (int index = 0; index < count; index++)
             {
+                BindingList<Milestone> Milestones = new BindingList<Milestone>();
+                BindingList<list_member> list_member = new BindingList<list_member>();
+                BindingList<bill> bill = new BindingList<bill>();
                 folder = AppDomain.CurrentDomain.BaseDirectory;
                 folder = folder + $"TourDetail\\{_data[index].Name}\\";
 

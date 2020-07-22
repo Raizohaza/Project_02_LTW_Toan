@@ -7,8 +7,9 @@
         xmlns:local="clr-namespace:Project_02_LTW"
         mc:Ignorable="d"             
         MouseDown="Window_MouseDown"
+        Icon="imageeeee/logo.jpg"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded"
+        Title="TripPlanner" Height="500" Width="800" Loaded="Window_Loaded"
         >
     <Window.Resources>
         <cv:RelativeToAsolutePathConverter x:Key="pathConverter" />

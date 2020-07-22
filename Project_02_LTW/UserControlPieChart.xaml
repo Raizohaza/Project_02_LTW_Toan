@@ -11,12 +11,13 @@
     <UserControl.Resources>
         <cv:RelativeToAsolutePathConverter x:Key="pathConverter" />
     </UserControl.Resources>
-    <Canvas Height="315" Width="800" Background="Wheat">
-        <ScrollViewer Height="315" Width="800">
-            <lvc:PieChart Name="PieChartView"  LegendLocation="Right" DataClick="PieChart_DataClick" Height="auto" Width="auto" Canvas.Left="250" Canvas.Top="30">
+    <Canvas Height="320" Width="800" Background="Wheat">
+        <ScrollViewer Height="320" Width="800">
+            <lvc:PieChart Name="PieChartView"  LegendLocation="Right" DataClick="PieChart_DataClick" Height="auto" Width="698" Canvas.Left="250" Canvas.Top="30">
 
             </lvc:PieChart>
         </ScrollViewer>
         <TextBlock Text="Biểu đồ thu  chi" TextWrapping="Wrap" FontSize="24" Canvas.Left="10" Canvas.Top="10" Height="137" Width="51"/>
+        <Button x:Name="Done_Button" Content="Done" Click="Done_Button_Click" Canvas.Left="132" Canvas.Top="290" Background="White"/>
     </Canvas>
 </UserControl>

@@ -7,6 +7,8 @@
         mc:Ignorable="d"                  
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
+        Title=""
+        Icon="imageeeee/logo.jpg"
          Height="450" Width="800">
     <Border CornerRadius="52" BorderThickness="0" Background="Snow" Loaded="Border_Loaded">
         <Grid>
@@ -16,7 +18,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Button x:Name="Continue" Content="Continue" FontSize="14"  Style="{StaticResource ResourceKey=btnBlue}" Background="Snow" Click="Continue_Click" Margin="621,23.8,62.6,10" Grid.Row="2"  />
-            <Border Height="210" CornerRadius="370"  Panel.ZIndex="2" VerticalAlignment="Bottom" Grid.Row="0" Margin="184,0,164.333,0">
+            <Border Height="210" CornerRadius="370"  Panel.ZIndex="2" VerticalAlignment="Bottom" Grid.Row="0" Margin="185,0,163,136" Grid.RowSpan="2">
                 <Border.Background>
                     <ImageBrush x:Name="Autoimg" ImageSource="{Binding}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"></ImageBrush>
                 </Border.Background>

@@ -38,7 +38,16 @@ namespace Project_02_LTW
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow._data[index] = UserControlUpdate._data; ;
+            MainWindow._data[index] = UserControlUpdate._data;
+            string info = "";
+            for (int i = 0; i < _data.Advance_Moneys.Count; i++)
+            {
+                info += $"{_data.Advance_Moneys[i].Info} so tien:{_data.Advance_Moneys[i].Money}\n";
+            }
+            if (info != "")
+            {
+                MessageBox.Show($"{info}", "Info", MessageBoxButton.OK);
+            }
             this.Visibility = Visibility.Collapsed;
         }
         private void UserControlUpdate_Loaded(object sender, RoutedEventArgs e)
@@ -176,6 +185,33 @@ namespace Project_02_LTW
             var item = (bill)(sender as FrameworkElement).DataContext;
             var index = CostListView.Items.IndexOf(item);
             _data.bill.RemoveAt(index);
+        }
+
+        private void AddAdvance_Click(object sender, RoutedEventArgs e)
+        {
+            Advance_Money item = new Advance_Money();
+            _data.Advance_Moneys.Add(item);
+        }
+
+        private void DeleteAdvanceMoney_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (Advance_Money)(sender as FrameworkElement).DataContext;
+            var index = AdvanceList.Items.IndexOf(item);
+            _data.Advance_Moneys.RemoveAt(index);
+        }
+
+        private void AdvanceMoney_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var item = (Advance_Money)(sender as FrameworkElement).DataContext;
+            var index = AdvanceList.Items.IndexOf(item);
+            _data.Advance_Moneys[index].Info = (sender as TextBox).Text;
+        }
+
+        private void AdvanceInfo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var item = (Advance_Money)(sender as FrameworkElement).DataContext;
+            var index = AdvanceList.Items.IndexOf(item);
+            _data.Advance_Moneys[index].Money = int.Parse((sender as TextBox).Text);
         }
     }
 }

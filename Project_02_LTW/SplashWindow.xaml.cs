@@ -79,28 +79,21 @@ namespace Project_02_LTW
 
             for (int i = 0; i < count; i++)
             {
-                // lấy dòng thứ 1 trong file data_travel
-                var line1 = lines[i * 3 + 1];
+                var line1 = lines[i * 4 + 1];
+                var line2 = lines[i * 4 + 2];
+
+                var line3 = lines[i * 4 + 3];
+                var line4 = lines[i * 4 + 4];
 
 
-                // lấy dòng thứ 2 trong file data_travel
-                var line2 = lines[i * 3 + 2];
-
-
-                // lấy dòng thứ 3 trong file data_travel
-                var line3 = lines[i * 3 + 3];
-
-                var recipes = new TCH()
+                var tmp = new TCH()
                 {
-                    // gán giá trị lấy được từ file data_travel cho chuyến du lịch sẽ hiển thị 
-
                     Name = line1,
-                    Intro = line2,
                     Imagee = line3,
-                    
+                    Intro = line2,
+                    Pass = line4,
                 };
-
-                _data.Add(recipes);
+                _data.Add(tmp);
             }
 
             // xuất 

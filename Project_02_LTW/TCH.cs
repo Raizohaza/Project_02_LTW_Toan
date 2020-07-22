@@ -14,7 +14,6 @@ namespace Project_02_LTW
         public string Imagee { get; set; } = "";
         public string Intro { get; set; } = "";
         public string Pass { get; set; } = "";
-        public BindingList<string> list_member { get; set; } = new BindingList<string>();
         public BindingList<list_member> Members { get; set; } = new BindingList<list_member>();
         public BindingList<bill> bill { get; set; } = new BindingList<bill>();
         public BindingList<Milestone> Milestones { get; set; } = new BindingList<Milestone>();

@@ -30,18 +30,15 @@ namespace Project_02_LTW
 
         public TCH _Tour { get; set; } = null;
 
-        bool AddRecipeButton_Click_Flag = false;
         void Update()
         {
-            //int tmp = _Tour.Count() + 1;
-            int tmp = 1;
             string Step_Info = string.Concat("Member ", ":");
             MemberLabel.Text = Step_Info;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             _Tour = new TCH();
-            _Tour.list_member = new BindingList<string>();
+            _Tour.Members = new BindingList<list_member>();
             _Tour.bill = new BindingList<bill>();
 
             Update();
@@ -49,9 +46,7 @@ namespace Project_02_LTW
 
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new UserMainWindow();
-            _PageNewTour.Children.Clear();
-            _PageNewTour.Children.Add(screen);
+            this.Visibility = Visibility.Collapsed;
         }
         private void Button_Done_Click(object sender, RoutedEventArgs e)
         {
@@ -63,25 +58,19 @@ namespace Project_02_LTW
             _Tour.Intro = Intro_TextBox.Text;
             MainWindow._data.Add(_Tour);
 
-            var screen = new UserMainWindow();
-            _PageNewTour.Children.Clear();
-            _PageNewTour.Children.Add(screen);
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
         {
-
-
-            AddRecipeButton_Click_Flag = true;
             MessageBoxResult result = result = MessageBox.Show("Bạn có muốn thêm thêm thành viên?", "Confirm", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             if (result.Equals(MessageBoxResult.OK))
             {
 
-                _Tour.list_member.Add(MemberTB.Text);
-                MemberListView.ItemsSource = _Tour.list_member;
+                _Tour.Members.Add(new list_member() { Member_Name = MemberTB.Text});
+                MemberListView.ItemsSource = _Tour.Members;
                 MemberTB.Text = string.Empty;
                 Update();
-                AddRecipeButton_Click_Flag = false;
             }
 
         }
@@ -89,8 +78,7 @@ namespace Project_02_LTW
         {
             var number = Int32.Parse(CostPriceTextBox.Text);
             List<bill> listBill = new List<bill>();
-            AddRecipeButton_Click_Flag = true;
-            MessageBoxResult result = result = MessageBox.Show("bạn có muốn thêm lộ trình?", "Confirm", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            MessageBoxResult result = result = MessageBox.Show("bạn có muốn thêm chi phí của lộ trình?", "Confirm", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             if (result.Equals(MessageBoxResult.OK))
             {
                 
@@ -101,7 +89,6 @@ namespace Project_02_LTW
                 CostTextBox.Text = string.Empty;
                 CostPriceTextBox.Text = string.Empty;
                 Update();
-                AddRecipeButton_Click_Flag = false;
             }
         }
 

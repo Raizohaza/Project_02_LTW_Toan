@@ -43,6 +43,7 @@ namespace Project_02_LTW
             //Grid_1.Visibility = Visibility.Hidden;
             Grid_1.Children.Add(new UserControlUpdate(_data,index));
             _data = UserControlUpdate._data;
+
         }
 
         private void Show_PieChart_Click(object sender, RoutedEventArgs e)
@@ -66,6 +67,8 @@ namespace Project_02_LTW
 
             data_member.ItemsSource = _data.Members;
             imagee_of_team.ItemsSource = _data.Milestones;
+
+            
         }
     }
 }

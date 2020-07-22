@@ -40,15 +40,16 @@ namespace Project_02_LTW
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            _tour = new ObservableCollection<TCH>();
             _tour = MainWindow._data;
             for (int i = 0; i < _tour.Count; i++)
             {
                 var temp = _tour[i];
-                if (temp.Pass == "true")
+                if (temp.Pass == "true" && !_data_arrived.Contains(temp))
                 {
                     _data_arrived.Add(temp);
                 }
-                else
+                else if (temp.Pass != "true" && !_data_non_arrived.Contains(temp))
                 {
                     _data_non_arrived.Add(temp);
                 }
@@ -57,6 +58,7 @@ namespace Project_02_LTW
             _Arrived.ItemsSource = _data_arrived;
             _non_Arrived.ItemsSource = _data_non_arrived;
         }
+        
 
         private void arrived_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -114,11 +116,8 @@ namespace Project_02_LTW
             }
             if (txtNameToSearch.Text.Length != 0)
             {
-
-                _data_arrived = tmp;
-                _Arrived.ItemsSource = _data_arrived;
-                _data_non_arrived = tmp2;
-                _non_Arrived.ItemsSource = _data_non_arrived;
+                _Arrived.ItemsSource = tmp;
+                _non_Arrived.ItemsSource = tmp2;
             }
             else
             {
@@ -129,21 +128,38 @@ namespace Project_02_LTW
         private void TextNameToSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            //string txtOrig = TextNameToSearch.Text;
-            //string upper = txtOrig.ToUpper();
-            //var empFilteredArrived = from Emp in _data_arrived
-            //                         let ename = Emp.Members[].Member_Name.ToUpper()
-            //                         where
-            //                          ename.StartsWith(upper)
-            //                          || ename.StartsWith(upper)
-            //                          || ename.Contains(txtOrig.ToUpper())
-            //                         select Emp;
-            //var tmp = empFilteredArrived.ToList();
-            //var tmp2 = new ObservableCollection<list_member>();
-            //if (TextNameToSearch.Text.Length != 0)
-            //{
+            string txtOrig = TextNameToSearch.Text.ToUpper();
 
-            //}
+            var tmp = new ObservableCollection<TCH>();
+            var tmp2 = new ObservableCollection<TCH>();
+
+            for (int i = 0; i < _data_arrived.Count; i++)
+            {
+                for (int j = 0; j < _data_arrived[i].Members.Count; j++)
+                {
+                    if (_data_arrived[i].Members[j].Member_Name.ToUpper().Contains(txtOrig) && !tmp.Contains(_data_arrived[i]))
+                        tmp.Add(_data_arrived[i]);
+                }
+            }
+            for (int i = 0; i < _data_non_arrived.Count; i++)
+            {
+                for (int j = 0; j < _data_non_arrived[i].Members.Count; j++)
+                {
+                    if (_data_non_arrived[i].Members[j].Member_Name.ToUpper().Contains(txtOrig) && !tmp2.Contains(_data_non_arrived[i]))
+                        tmp2.Add(_data_non_arrived[i]);
+                }
+            }
+            if (TextNameToSearch.Text.Length != 0)
+            {
+                _Arrived.ItemsSource = tmp;
+                _non_Arrived.ItemsSource = tmp2;
+            }
+            else
+            {
+                UCMainWindow.Children.Clear();
+                UCMainWindow.Children.Add(new UserMainWindow());
+            }
+
         }
 
         private void Button_Home_Click(object sender, RoutedEventArgs e)
@@ -160,9 +176,7 @@ namespace Project_02_LTW
 
         private void Button_NewTour_Click(object sender, RoutedEventArgs e)
         {
-            Grid2.Children.Clear();
             Grid2.Children.Add(new UserControlNewTour());
-
         }
         private void Button_Nominations_Click(object sender, RoutedEventArgs e)
         {

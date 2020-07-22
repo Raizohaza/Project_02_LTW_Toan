@@ -94,26 +94,35 @@
 
 
             <TextBlock Text="Ứng trước:" Canvas.Left="15" Canvas.Top="512" Height="35" Width="100" />
-            <ListView x:Name="AdvanceList" Width="320" Height="210" Canvas.Left="15" Canvas.Top="565">
+            <ListView x:Name="AdvanceList" Width="320" Height="210" Canvas.Left="15" Canvas.Top="565" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name"  Width="120" x:Name="AdvanceName">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox TextWrapping="Wrap" Name="CostNameTextBox" Text="{Binding Info}" Width="100"/>
+                                    <TextBox TextWrapping="Wrap" Name="AdvanceInfo" Text="{Binding Info}" Width="100" TextChanged="AdvanceInfo_TextChanged"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Price" Width="120" x:Name="AdvanceMoney">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding Money}" Width="100" Name="CostTextBox" />
+                                    <TextBox Text="{Binding Money}" Width="100" Name="AdvanceMoney" TextChanged="AdvanceMoney_TextChanged"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Delete" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="DeleteAdvanceMoney" Style="{StaticResource btnGray}"  Width="40" Height="35" Click="DeleteAdvanceMoney_Click" Content="X"  Foreground="Red"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
+            <Button x:Name="AddAdvance" Content="Add" Click="AddAdvance_Click" Width="50" Height="25" Canvas.Left="245" Canvas.Top="522" />
+
             <Button x:Name="DoneButton" Content="Done" Style="{StaticResource btnBlue}" Click="DoneButton_Click" Margin="0" Canvas.Left="560" Canvas.Top="805" Height="150" Width="175"/>
         </Canvas>
     </ScrollViewer>

@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:Project_02_LTW"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="Page_Loaded">
-    <ScrollViewer Width="800" Height="300" Name="ScrocllViewerTour" VerticalScrollBarVisibility="Visible" >
+    <ScrollViewer Width="800" Height="350" Name="ScrocllViewerTour" VerticalScrollBarVisibility="Visible" >
         <Canvas Background="White" Name="_PageNewTour" Width="800" Height="450">
             <Button x:Name="Button_Done" Style="{ StaticResource btnBlue}" Click="Button_Done_Click" Content="Done" Canvas.Left="722" Margin="0" Canvas.Top="365" RenderTransformOrigin="0.508,-0.581" />
-            <Button x:Name="Button_Cancel" Style="{StaticResource btnGray}" Click="Button_Cancel_Click" Content="Cancel" RenderTransformOrigin="0.994,4.005" Canvas.Left="11" Margin="0" Canvas.Top="5" />
+            <Button x:Name="Button_Cancel" Style="{StaticResource btnGray}" Click="Button_Cancel_Click" Content="Cancel" RenderTransformOrigin="0.994,4.005" Canvas.Left="722" Margin="0" Canvas.Top="310" />
             <Label Content="Tour's Name:" FontWeight="Medium" FontSize="20" Margin="10,37,667,375"/>
             <TextBox Canvas.Left="138" Canvas.Top="49" Width="200" Height="25" x:Name="Tour_Name"/>
             <Image Source="{Binding Member_Avatar}" x:Name="Image" Height="135" Canvas.Left="11" Canvas.Top="80" Width="322"/>
@@ -17,7 +17,7 @@
             <TextBlock Text="Member:" FontWeight="Medium" FontSize="18" Name="MemberLabel" RenderTransformOrigin="0.165,-0.44" Canvas.Left="338" Canvas.Top="230" Height="25"/>
             <!--<TextBlock Text="Member's Name:"  FontSize="14" Margin="33,148,613,270.6"/>-->
             <TextBox x:Name="MemberTB" AcceptsReturn="True"  Width="295" Height="25" RenderTransformOrigin="0.462,2.186" Canvas.Left="422" Canvas.Top="230"/>
-            <ListView SelectionChanged="ListView_SelectionChanged" Name="CostList" Height="145" Canvas.Left="422" Canvas.Top="80" Width="295">
+            <ListView SelectionChanged="ListView_SelectionChanged" Name="CostList" Height="145" Canvas.Left="422" Canvas.Top="80" Width="295" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name"  Width="145" x:Name="_TourName">
@@ -49,12 +49,12 @@
             <ListView Name="MemberListView" Height="137" Canvas.Left="422" Canvas.Top="260" Width="295">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
+                        <TextBlock Text="{Binding Member_Name}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <Button x:Name="Button_AddCost" Style="{StaticResource btnGray}" Click="Button_AddCost_Click" Content="Add" Margin="0" RenderTransformOrigin="0.531,1.406" Height="40" Canvas.Left="722" Canvas.Top="42" Width="50"/>
-            <CheckBox Name ="LeaderCheck" IsChecked="True" Content="Leader" Canvas.Left="338" Canvas.Top="353" Height="35" Width="64" RenderTransformOrigin="0.387,0.782" />
+            <CheckBox Name ="LeaderCheck" IsChecked="False" Content="Visited" Canvas.Left="338" Canvas.Top="353" Height="35" Width="64" RenderTransformOrigin="0.387,0.782" />
             <!--<TextBlock Text="Travel Expenses:"  FontSize="14" Margin="526,147,147,271"/>-->
             <TextBox x:Name="CostTextBox" Canvas.Left="422" Canvas.Top="49" Width="130" Height="25" RenderTransformOrigin="-0.042,0.467"/>
             <TextBox x:Name="CostPriceTextBox" RenderTransformOrigin="0.475,0.332" Canvas.Left="607" Canvas.Top="49" Width="110" Height="25"/>

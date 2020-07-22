@@ -60,5 +60,9 @@ namespace Project_02_LTW
             neo.PushOut = 30;
         }
 
+        private void Done_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+        }
     }
 }
