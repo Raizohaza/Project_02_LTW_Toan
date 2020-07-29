@@ -200,14 +200,14 @@ namespace Project_02_LTW
             _data.Advance_Moneys.RemoveAt(index);
         }
 
-        private void AdvanceMoney_TextChanged(object sender, TextChangedEventArgs e)
+        private void AdvanceInfo_TextChanged(object sender, TextChangedEventArgs e)
         {
             var item = (Advance_Money)(sender as FrameworkElement).DataContext;
             var index = AdvanceList.Items.IndexOf(item);
             _data.Advance_Moneys[index].Info = (sender as TextBox).Text;
         }
-
-        private void AdvanceInfo_TextChanged(object sender, TextChangedEventArgs e)
+        
+        private void AdvanceMoney_TextChanged(object sender, TextChangedEventArgs e)
         {
             var item = (Advance_Money)(sender as FrameworkElement).DataContext;
             var index = AdvanceList.Items.IndexOf(item);
