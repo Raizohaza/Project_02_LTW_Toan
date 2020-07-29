@@ -1,0 +1,16 @@
+5
+G1
+Đi tàu đến Phan Thiết
+G1.jpg
+G2
+Phan Thiết rất đẹp nhaa
+G2.jpg
+G3
+Chơi đồi Cát Bay ở Mũi Né 
+G3.jpg
+G4
+Ngắm Suối Tiên
+G4.jpg
+G5
+Bãi Rạng nè 
+G5.jpg
